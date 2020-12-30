@@ -31,5 +31,5 @@ def get_translation(word):
     return source, target
 
 
-# print(get_translation("Schlafen")[0])
-# print(get_translation("Schlafen")[1])
+def get_simple_translation(word):
+    return get_translation(word)[1][1]
