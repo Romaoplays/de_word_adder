@@ -75,8 +75,10 @@ while True:
 
         k = 0
 
-        for row in csv_list:
-            print(row)
+        print("Saved words:\n")
+
+        for i in range(len(csv_list)):
+            print(f"W: {csv_list[i][0]}  T: {csv_list[i][1]}")
 
         print(f"Total: {len(csv_list)} words")
 
@@ -94,11 +96,12 @@ while True:
                 csv_file.close()
                 break
             elif resposta_viewer == "ok":
+                print("")
                 for i in range(len(csv_list)):
                     if i <= k:
-                        print(str(csv_list[i]) + " OK")
+                        print(f"W: {csv_list[i][0]}  T: {csv_list[i][1]} ======= OK")
                     else:
-                        print(csv_list[i])
+                        print(f"W: {csv_list[i][0]}  T: {csv_list[i][1]}")
                 k = k + 1
 
     else:
