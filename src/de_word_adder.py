@@ -138,7 +138,7 @@ while True:
             current_article = get_article(translated_words[0][1])
 
             if current_article == "":
-                print("Article not found/Non-existant")
+                print("\nArticle not found/Non-existant")
             else:
                 print("\n" + current_article + " " + resposta.capitalize())
 
