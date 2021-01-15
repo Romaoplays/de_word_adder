@@ -131,12 +131,16 @@ while True:
     elif resposta_inicial == "4":
         print("\nType out word:")
         resposta = input()
-        current_article = get_article(resposta.capitalize())
-
-        if current_article == "":
-            print("Artigo não encontrado")
+        translated_words = get_translation(resposta)
+        if len(translated_words[0]) == 1:
+            print("\nWord not found!!!")
         else:
-            print("\n" + current_article + " " + resposta.capitalize())
+            current_article = get_article(translated_words[0][1])
+
+            if current_article == "":
+                print("Article not found/Non-existant")
+            else:
+                print("\n" + current_article + " " + resposta.capitalize())
 
     else:
         print("!!!Please type one of the numbers above!!!")
