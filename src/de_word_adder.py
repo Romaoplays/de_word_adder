@@ -3,6 +3,7 @@ import pprint
 import os
 
 from pons_translator_module import get_translation
+from der_die_das_module import get_article
 
 # Creates csv file if it doesn't exist
 try:
@@ -29,10 +30,18 @@ def get_word_input():
     unduper_list = []
     for i in range(f):
         if translated_words[1][i + 1] not in unduper_list:
-            print("- " + translated_words[1][i + 1])
-            unduper_list.append(translated_words[1][i + 1])
+            if len(translated_words[1][i + 1]) < 15:
+                print("- " + translated_words[1][i + 1])
+                unduper_list.append(translated_words[1][i + 1])
 
-    source = translated_words[0][1]
+    current_article = get_article(translated_words[0][1])
+
+    if current_article != "":
+        print("\n" + current_article + " " + translated_words[0][1])
+        source = get_article(translated_words[0][1]) + " " + translated_words[0][1]
+    else:
+        source = translated_words[0][1]
+
     target = translated_words[1][1]
 
     return source, target
@@ -40,7 +49,7 @@ def get_word_input():
 
 while True:
     print(
-        "\nWhat do you want to do?\n1 - Add word (Wild)\n2 - Add word (Book)\n3 - View Saved words"
+        "\nWhat do you want to do?\n1 - Add word (Wild)\n2 - Add word (Book)\n3 - View Saved words\n4 - Check article"
     )
     resposta_inicial = input()
 
@@ -103,6 +112,16 @@ while True:
                     else:
                         print(f"W: {csv_list[i][0]}  T: {csv_list[i][1]}")
                 k = k + 1
+
+    elif resposta_inicial == "4":
+        print("\nType out word:")
+        resposta = input()
+        current_article = get_article(resposta.capitalize())
+
+        if current_article == "":
+            print("Artigo não encontrado")
+        else:
+            print("\n" + current_article + " " + resposta.capitalize())
 
     else:
         print("!!!Please type one of the numbers above!!!")
