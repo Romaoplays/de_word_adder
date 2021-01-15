@@ -87,7 +87,10 @@ while True:
         print("Saved words:\n")
 
         for i in range(len(csv_list)):
-            print(f"W: {csv_list[i][0]}  T: {csv_list[i][1]}")
+            try:
+                print(f"W: {csv_list[i][0]}  T: {csv_list[i][1]} || {csv_list[i][2]}")
+            except IndexError:
+                print(f"W: {csv_list[i][0]}  T: {csv_list[i][1]}")
 
         print(f"Total: {len(csv_list)} words")
 
@@ -108,9 +111,21 @@ while True:
                 print("")
                 for i in range(len(csv_list)):
                     if i <= k:
-                        print(f"W: {csv_list[i][0]}  T: {csv_list[i][1]} ======= OK")
+                        try:
+                            print(
+                                f"W: {csv_list[i][0]}  T: {csv_list[i][1]} || {csv_list[i][2]} ======= OK"
+                            )
+                        except IndexError:
+                            print(
+                                f"W: {csv_list[i][0]}  T: {csv_list[i][1]} ======= OK"
+                            )
                     else:
-                        print(f"W: {csv_list[i][0]}  T: {csv_list[i][1]}")
+                        try:
+                            print(
+                                f"W: {csv_list[i][0]}  T: {csv_list[i][1]} || {csv_list[i][2]}"
+                            )
+                        except IndexError:
+                            print(f"W: {csv_list[i][0]}  T: {csv_list[i][1]}")
                 k = k + 1
 
     elif resposta_inicial == "4":
