@@ -30,7 +30,7 @@ def get_word_input():
     unduper_list = []
     for i in range(f):
         if translated_words[1][i + 1] not in unduper_list:
-            if len(translated_words[1][i + 1]) < 15:
+            if len(translated_words[1][i + 1]) < 50:
                 print("- " + translated_words[1][i + 1])
                 unduper_list.append(translated_words[1][i + 1])
 
