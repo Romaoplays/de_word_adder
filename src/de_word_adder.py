@@ -40,6 +40,7 @@ def get_word_input():
         print("\n" + current_article + " " + translated_words[0][1])
         source = get_article(translated_words[0][1]) + " " + translated_words[0][1]
     else:
+        print("\n" + translated_words[0][1])
         source = translated_words[0][1]
 
     target = translated_words[1][1]
