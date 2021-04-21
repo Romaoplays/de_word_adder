@@ -50,26 +50,44 @@ def get_word_input():
 
 while True:
     print(
-        "\nWhat do you want to do?\n1 - Add word (Wild)\n2 - Add word (Book)\n3 - View Saved words\n4 - Check article"
+        "\nWhat do you want to do?\n1 - Add Word (Wild)\n2 - Add Word (Book)\n3 - View Saved Words\n4 - Check Article"
     )
     resposta_inicial = input()
 
     if resposta_inicial == "1" or resposta_inicial == "2":
         words = get_word_input()
         if words is not None:
-            print("\n1 - Add \n2 - Discard")
+            print(
+                "\n1 - Add First Translation\n2 - Discard Word\n3 - Add Own Translation"
+            )
             resposta_add = input()
             words_list = list(words)
 
             if resposta_inicial == "2" and resposta_add == "1":
                 print("\nBook page?")
                 words_list.append("Pag. " + input())
-
             if resposta_add == "1":
                 csv_file = open("de_words.csv", "a", encoding="utf-8-sig")
                 csv_writer = csv.writer(csv_file)
                 csv_writer.writerow(words_list)
                 csv_file.close()
+            if resposta_add == "3":
+                print("\nType Own Translation: (2 - Cancel)")
+                resposta_own_translation = input()
+                if resposta_own_translation == "2":
+                    print("\nCanceled!")
+                else:
+                    words_list = []
+                    words_list.append(list(words)[0])
+                    words_list.append(resposta_own_translation)
+                    if resposta_inicial == "2":
+                        print("\nBook page?")
+                        words_list.append("Pag. " + input())
+                    csv_file = open("de_words.csv", "a", encoding="utf-8-sig")
+                    csv_writer = csv.writer(csv_file)
+                    csv_writer.writerow(words_list)
+                    csv_file.close()
+                    print("\nDone!")
 
     elif resposta_inicial == "3":
         csv_file = open("de_words.csv", "r", encoding="utf-8-sig")
