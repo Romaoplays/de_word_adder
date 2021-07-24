@@ -2,7 +2,11 @@ import csv
 import pprint
 import os
 
-from pons_translator_module import get_translation
+from pons_translator_module import (
+    get_reverse_translation,
+    get_translation,
+    get_reverse_translation,
+)
 from der_die_das_module import get_article
 
 # Creates csv file if it doesn't exist
@@ -48,9 +52,34 @@ def get_word_input():
     return source, target
 
 
+def get_reverse_word_input():
+    print("\nType out word:")
+    resposta = input()
+    translated_words = get_reverse_translation(resposta)
+    if len(translated_words[0]) == 1:
+        print("\n!!!Translation not found!!!")
+        return None
+    elif len(translated_words[0]) < 6:
+        f = len(translated_words[0]) - 1
+    else:
+        f = 5
+
+    print("\nPossible translations: ")
+    unduper_list = []
+    for i in range(f):
+        if translated_words[1][i + 1] not in unduper_list:
+            if len(translated_words[1][i + 1]) < 50:
+                print("- " + translated_words[1][i + 1])
+                unduper_list.append(translated_words[1][i + 1])
+
+    target = translated_words[1][1]
+
+    return target
+
+
 while True:
     print(
-        "\nWhat do you want to do?\n1 - Add Word (Wild)\n2 - Add Word (Book)\n3 - View Saved Words\n4 - Check Article"
+        "\nWhat do you want to do?\n1 - Add Word (Wild)\n2 - Add Word (Book)\n3 - View Saved Words\n4 - Check Article\n5 - Reverse Translate"
     )
     resposta_inicial = input()
 
@@ -160,6 +189,9 @@ while True:
                 print("\nArticle not found/Non-existant")
             else:
                 print("\n" + current_article + " " + resposta.capitalize())
+
+    elif resposta_inicial == "5":
+        get_reverse_word_input()
 
     else:
         print("!!!Please type one of the numbers above!!!")
