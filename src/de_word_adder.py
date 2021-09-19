@@ -226,9 +226,9 @@ while True:
         while True:
             print("\nType out word:\n('quit', 'remove_last')")
             quick_word_input = input()
-            if quick_word_input == "quit":
+            if "quit" in quick_word_input:
                 break
-            elif quick_word_input == "remove_last":
+            elif "remove_last" in quick_word_input:
                 remove_last_word()
             else:
                 translated_words = list(get_translation(quick_word_input))
