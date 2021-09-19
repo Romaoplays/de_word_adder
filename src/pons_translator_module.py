@@ -61,4 +61,4 @@ def get_simple_translation(word):
     try:
         return get_translation(word)[1][1]
     except IndexError:
-        return ""
+        return None
