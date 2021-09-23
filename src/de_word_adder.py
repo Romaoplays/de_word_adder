@@ -224,9 +224,9 @@ while True:
 
     elif resposta_inicial == "6":
         while True:
-            print("\nType out word:\n('quit', 'remove_last')")
+            print("\nType out word:\n('exit', 'remove_last')")
             quick_word_input = input()
-            if "quit" in quick_word_input:
+            if "exit" in quick_word_input:
                 break
             elif "remove_last" in quick_word_input:
                 remove_last_word()
@@ -239,6 +239,16 @@ while True:
 
                     if current_article != "":
                         quick_source = current_article + " " + translated_words[0][1]
+                        quick_target = translated_words[1][1]
+
+                        words_list = [quick_source, quick_target]
+
+                        csv_file = open("de_words.csv", "a", encoding="utf-8-sig")
+                        csv_writer = csv.writer(csv_file)
+                        csv_writer.writerow(words_list)
+                        csv_file.close()
+
+                        print(f"\nWord Saved! {quick_source}-> {quick_target}")
                     else:
                         quick_source = translated_words[0][1]
 
